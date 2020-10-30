@@ -48,36 +48,27 @@ app.get("/notes", function (req, res) {
 });
 
 
-// To display contents of the notes array:
+// // To display contents of the notes array:
 
-// Load the array from the db.json file
-fs.readFileSync(__dirname + "/../db/db.json");
+//  Load the array from the db.json file
+fs.readFileSync(__dirname + "/db/db.json");
 
-// 
+// // 
 app.get("/api/notes", function (req, res) {
     return res.json(notes);
 });
 
 app.post("/api/notes", function (req, res) {
     var newNote = req.body;
-
+    notes.push(newNote);
     console.log(newNote);
-
-    // We then add the json the user sent to the character array + save the array to db.json
-    if (notes.length < 5) {
-        notes.push(newNote);
-        res.json(true);
-        fs.writeFileSync(__dirname + "/../db/db.json", JSON.stringify(notes - array), "UTF8");
-    }
-    else {
-        waiting.push(newReservation);
-        res.json(false);
-    };
-
-    // We then display the JSON to the users
+    fs.writeFileSync(__dirname + "/../db/db.json", JSON.stringify(notes - array), "UTF8");
     res.json(newNote);
 
 });
+
+// We then add the json the user sent to the character array + save the array to db.json
+
 
 app.post('/api/clear', function (req, res) {
     notes = [];
