@@ -140,9 +140,9 @@ const getAndRenderNotes = () => {
   return getNotes().then(renderNoteList);
 };
 
-$saveNoteBtn.on("click", ".fas fa-save text-light save-note", handleNoteSave);
+$saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
-$newNoteBtn.on("click", ".fas fa-pen text-light new-note", handleNewNoteView);
+$newNoteBtn.on("click", ".new-note", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);

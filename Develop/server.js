@@ -1,4 +1,4 @@
-// Dependencies
+// Dependencies + Routing
 // =============================================================
 const express = require("express");
 const path = require("path");
@@ -16,64 +16,60 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+app.use(apiRoutes);
+app.use(htmlRoutes);
 
 //Data
 
-let notes = [
-    {
-        noteID: 1234,
-        notecontent: "First Note's Content"
+// let notes = [
+//     {
+//         noteID: 1234,
+//         notecontent: "First Note's Content"
 
-    },
-    {
-        noteID: 5678,
-        notecontent: "Second Note's Content"
+//     },
+//     {
+//         noteID: 5678,
+//         notecontent: "Second Note's Content"
 
-    }
-];
+//     }
+// ];
 
 
 
 // Routes
 // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
-});
+// Route setup for HTML
+// app.get("/", function (req, res) {
+//     res.sendFile(path.join(__dirname, "index.html"));
+// });
+// app.get("/notes", function (req, res) {
+//     res.sendFile(path.join(__dirname, "notes.html"));
+// });
 
 
-// // To display contents of the notes array:
+// // Route Setup for the API
+// app.get("/api/notes", function (req, res) {
+//     fs.readFileSync(__dirname + "/db/db.json");
+//     res.json();
+// });
 
-//  Load the array from the db.json file
-fs.readFileSync(__dirname + "/db/db.json");
+// app.post("/api/notes", function (req, res) {
+//     // 
+//     //notes.push(newNote);
+//     // console.log(newNote);
+//     fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(notes - array), "UTF8");
+//     // res.json(newNote);
 
-// // 
-app.get("/api/notes", function (req, res) {
-    return res.json(notes);
-});
-
-app.post("/api/notes", function (req, res) {
-    var newNote = req.body;
-    notes.push(newNote);
-    console.log(newNote);
-    fs.writeFileSync(__dirname + "/../db/db.json", JSON.stringify(notes - array), "UTF8");
-    res.json(newNote);
-
-});
+// });
 
 // We then add the json the user sent to the character array + save the array to db.json
 
 
-app.post('/api/clear', function (req, res) {
-    notes = [];
+// app.post('/api/clear', function (req, res) {
+//     notes = [];
 
-});
+
 
 // Starts the server to begin listening
 // =============================================================
