@@ -10,7 +10,7 @@ const htmlRoutes = require("./routes/htmlRoutes");
 // Sets up the Express App + Creates Port
 // =============================================================
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Sets up the Express app to handle data parsing and routes
 //Note: Routes will established in their own js files
